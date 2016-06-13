@@ -40,4 +40,9 @@ public class GameplayScreen extends ScreenAdapter {
         return Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
     }
 
+    @Override
+    public void dispose() {
+        Assets.instance.dispose();
+    }
+
 }
