@@ -15,6 +15,8 @@ import com.sasuchi.entertainment.util.OnScreenControls;
  */
 public class GameplayScreen extends ScreenAdapter {
 
+    public final static String TAG = GameplayScreen.class.getName();
+
     private OnScreenControls controller;
     private SpriteBatch batch;
     private ChaseCam camera;
