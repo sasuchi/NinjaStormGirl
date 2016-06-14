@@ -2,9 +2,12 @@ package com.sasuchi.entertainment.enti;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.sasuchi.entertainment.util.Assets;
 import com.sasuchi.entertainment.util.Constants;
 import com.sasuchi.entertainment.util.UtilityFunctions;
 
@@ -198,6 +201,29 @@ public class CharacterClass {
 
     }
 
+    public void render(SpriteBatch batch) {
+        TextureRegion region = Assets.instance.characterAsset.standingRight;
+
+        if (direction == Constants.Direction.RIGHT && jumpState != Constants.JumpState.GROUNDED) {
+            region = Assets.instance.characterAsset.jumpingRight;
+        } else if (direction == Constants.Direction.RIGHT && walkState == Constants.WalkState.STANDING) {
+            region = Assets.instance.characterAsset.standingRight;
+        } else if (direction == Constants.Direction.RIGHT && walkState == Constants.WalkState.WALKING) {
+            float walkTimeSeconds = UtilityFunctions.secondsSince(walkStartTime);
+            region = Assets.instance.characterAsset.walkingRightAnimation.getKeyFrame(walkTimeSeconds);
+        } else if (direction == Constants.Direction.LEFT && jumpState != Constants.JumpState.GROUNDED) {
+            region = Assets.instance.characterAsset.jumpingLeft;
+        } else if (direction == Constants.Direction.LEFT && walkState == Constants.WalkState.STANDING) {
+            region = Assets.instance.characterAsset.standingLeft;
+        } else if (direction == Constants.Direction.LEFT && walkState == Constants.WalkState.WALKING) {
+            float walkTimeSeconds = UtilityFunctions.secondsSince(walkStartTime);
+            region = Assets.instance.characterAsset.walkingLeftAnimation.getKeyFrame(walkTimeSeconds);
+        }
+
+        UtilityFunctions.drawTextureRegion(batch, region, currentPosition, Constants.CHARACTER_SIZE);
+
+    }
+
     public Vector2 getCurrentPosition() {
         return currentPosition;
     }
@@ -208,5 +234,9 @@ public class CharacterClass {
 
     public String getSelectedCharacter() {
         return selectedCharacter;
+    }
+
+    public int getExtraLives() {
+        return extraLives;
     }
 }

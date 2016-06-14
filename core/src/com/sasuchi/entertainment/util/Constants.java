@@ -42,6 +42,10 @@ public class Constants {
 
     public final static float ANIM_LOOP_DUR = 0.25f;
 
+    //Level Configuration
+    public final static float WORLD_WIDTH = 200;
+    public final static float WORLD_HEIGHT = 200;
+
     //Level Sprites
 
     public final static String PLATFORM_TYPE_A = "platform-type-a";
