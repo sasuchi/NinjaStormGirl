@@ -13,9 +13,12 @@ public class Constants {
     public final static float KILL_PLANE = -200.0f;
     public final static int INIT_HEALTH = 100;
     public final static int INIT_LIVES = 3;
-    public final static int CHARACTER_HEIGHT = 100;
     public final static Vector2 CHARACTER_SIZE = new Vector2(30.0f, 50.0f);
     public final static Vector2 SWORD_OFFSET = new Vector2(5.0f, 8.0f);
+    public final static int CHAR_MOVE_SPEED = 50;
+    public final static int CHASE_CAM_MOVE_SPEED = 100;
+    public final static int JUMP_SPEED = 20;
+    public final static int MAX_JUMP_HEIGHT = 200;
 
     //Character Sprites
     public final static String STAND_RIGHT = "stand-right";

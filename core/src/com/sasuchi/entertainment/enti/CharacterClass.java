@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.sasuchi.entertainment.util.Constants;
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import com.sasuchi.entertainment.util.UtilityFunctions;
 
 /**
  * Created by Sascha on 13.06.2016.
@@ -133,23 +133,43 @@ public class CharacterClass {
     }
 
     public void moveLeft(float delta) {
-
+        if (jumpState == Constants.JumpState.GROUNDED && walkState != Constants.WalkState.WALKING) {
+            walkStartTime = TimeUtils.nanoTime();
+        }
+        walkState = Constants.WalkState.WALKING;
+        direction = Constants.Direction.LEFT;
+        currentPosition.x -= delta * Constants.CHAR_MOVE_SPEED;
     }
 
     public void moveRight(float delta) {
-
+        if (jumpState == Constants.JumpState.GROUNDED && walkState != Constants.WalkState.WALKING) {
+            walkStartTime = TimeUtils.nanoTime();
+        }
+        walkState = Constants.WalkState.WALKING;
+        direction = Constants.Direction.RIGHT;
+        currentPosition.x += delta * Constants.CHAR_MOVE_SPEED;
     }
 
     public void startJump() {
-
+        jumpState = Constants.JumpState.JUMPING;
+        jumpStartTime = TimeUtils.nanoTime();
+        continueJump();
     }
 
     public void continueJump() {
-
+        if (jumpState == Constants.JumpState.JUMPING) {
+            if (UtilityFunctions.secondsSince(jumpStartTime) < Constants.MAX_JUMP_HEIGHT) {
+                velocity.y = Constants.JUMP_SPEED;
+            } else {
+                endJump();
+            }
+        }
     }
 
     public void endJump() {
-
+        if (jumpState == Constants.JumpState.JUMPING) {
+            jumpState = Constants.JumpState.FALLING;
+        }
     }
 
     public boolean isLandedOn(LevelObject levelObject) {

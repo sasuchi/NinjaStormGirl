@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 /**
  * Created by Zascha on 13.06.2016.
