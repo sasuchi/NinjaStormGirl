@@ -45,6 +45,7 @@ public class Constants {
     //Level Configuration
     public final static float WORLD_WIDTH = 200;
     public final static float WORLD_HEIGHT = 200;
+    public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
     //Level Sprites
 
